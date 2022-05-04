@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Helpers;
+using AutoMapper;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Data.Migrations;
@@ -42,7 +44,9 @@ namespace API
 
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
+            services.AddAutoMapper(typeof(MappingProfiles));
 
 
         }
@@ -60,6 +64,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles(); 
 
             app.UseAuthorization();
 
