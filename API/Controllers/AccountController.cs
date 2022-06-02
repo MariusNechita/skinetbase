@@ -28,6 +28,9 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+
+        
+
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
@@ -104,6 +107,11 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            if(CheckEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return BadRequest(new ApiValidationErrorResponse{Errors = new []{"Email address is already used"}});
+            }
+
             var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,

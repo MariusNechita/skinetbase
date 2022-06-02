@@ -29,7 +29,7 @@ namespace API.Extensions
               c.AddSecurityDefinition("Bearer", securitySchema);
 
               var securityRequirement = new OpenApiSecurityRequirement {{securitySchema, new[] {"Bearer"}}};
-              c.AddSecurityRequirement(securityRequirement);
+              c.AddSecurityRequirement(securityRequirement); 
           });
 
             return services;
