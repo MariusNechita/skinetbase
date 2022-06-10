@@ -20,7 +20,11 @@ namespace API.Extensions
 
             services.AddScoped<IBasketRepository, BasketRepository>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
+            services.AddScoped<IOrderService, OrderService>();
 
              services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -41,13 +45,7 @@ namespace API.Extensions
                 };
             });
 
-
-
-
             return services;
-
-
-
         }
     }
 }
