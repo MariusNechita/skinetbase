@@ -21,7 +21,6 @@ export interface IBasket {
 
   }
 
-
   export interface IBasketTotals {
     shipping: number;
     subtotal: number;
