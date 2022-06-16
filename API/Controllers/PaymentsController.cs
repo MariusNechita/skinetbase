@@ -35,8 +35,8 @@ namespace API.Controllers
             return basket;
         }
 
-        [HttpPost("weebhook")]
-        public async Task<ActionResult> StripeWeebhook()
+        [HttpPost("webhook")]
+        public async Task<ActionResult> StripeWebhook()
         {
             var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
             var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], WhSecret);
