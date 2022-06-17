@@ -11,7 +11,6 @@ namespace Infrastructure.Services
 {
     public class OrderService : IOrderService
     {
-      
        
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBasketRepository _basketRepo;
@@ -19,7 +18,6 @@ namespace Infrastructure.Services
 
         public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo, IPaymentService paymentService)
         {
-           
             _unitOfWork = unitOfWork;
             _basketRepo = basketRepo;
             _paymentService = paymentService;

@@ -16,7 +16,7 @@ namespace API.Controllers
     {
         private readonly IPaymentService _paymentService;
         private readonly ILogger<PaymentsController> _logger;
-        private const string WhSecret = "";
+        private const string WhSecret = "whsec_7e643a7d524a1e958aefeaccef63f132a773403db710113c99f98a34acbf3b95";
 
         public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger)
         {
@@ -52,12 +52,12 @@ namespace API.Controllers
                     order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id);
                     _logger.LogInformation("Order updated to payment received: ", order.Id);
                     break;
-                
+                    
                 case "payment_intent.payment_failed":
                     intent = (PaymentIntent)stripeEvent.Data.Object;
                     _logger.LogInformation("Payment Failed: ", intent.Id);
                     order = await _paymentService.UpdateOrderPaymentFailed(intent.Id);
-                    _logger.LogInformation("Payment failed: ", order.Id);
+                    _logger.LogInformation("Payment Failed: ", order.Id);
                     break;
             }
 

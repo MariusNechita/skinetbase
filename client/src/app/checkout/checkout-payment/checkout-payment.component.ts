@@ -87,8 +87,8 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
 
       if (paymentResult.paymentIntent) {
         this.basketService.deleteBasket(basket);
-        const navigationExtras: NavigationExtras = { state: createdOrder };
-        this.router.navigate(['checkout/success'], navigationExtras)
+        const navigationExtras: NavigationExtras = {state: createdOrder};
+        this.router.navigate(['checkout/success'], navigationExtras);
       } else {
         this.toastr.error(paymentResult.error.message);
       }
@@ -121,7 +121,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
       basketId: basket.id,
       deliveryMethodId: +this.checkoutForm.get('deliveryForm').get('deliveryMethod').value,
       shipToAddress: this.checkoutForm.get('addressForm').value
-    }
+    };
   }
 
 }
