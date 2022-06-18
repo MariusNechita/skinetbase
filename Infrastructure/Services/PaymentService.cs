@@ -70,8 +70,8 @@ namespace Infrastructure.Services
             else 
             {
                 var options = new PaymentIntentUpdateOptions
-                { 
-                    Amount = (long) basket.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long) shippingPrice * 100, 
+                {
+                    Amount = (long) basket.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long) shippingPrice * 100
                 };
                 await service.UpdateAsync(basket.PaymentIntentId, options);
             }
@@ -84,7 +84,7 @@ namespace Infrastructure.Services
 
         public async Task<Order> UpdateOrderPaymentFailed(string paymentIntentId)
         {
-            var spec = new OrderByPaymentIntentIdSpecification(paymentIntentId);
+           var spec = new OrderByPaymentIntentIdSpecification(paymentIntentId);
            var order = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
 
             if (order == null) return null;
@@ -103,7 +103,7 @@ namespace Infrastructure.Services
 
             if (order == null) return null;
 
-            order.Status = OrderStatus.PaymentReceived;
+            order.Status = OrderStatus.PaymentRecevied;
             _unitOfWork.Repository<Order>().Update(order);
 
             await _unitOfWork.Complete();
